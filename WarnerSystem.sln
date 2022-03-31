@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarnerSystem", "WarnerSystem\WarnerSystem.csproj", "{60D66EC1-D229-4988-B824-778C6D62CECB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60D66EC1-D229-4988-B824-778C6D62CECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D66EC1-D229-4988-B824-778C6D62CECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D66EC1-D229-4988-B824-778C6D62CECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D66EC1-D229-4988-B824-778C6D62CECB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5B0C09B-2276-4785-AB0E-18887B3A5A61}
+	EndGlobalSection
+EndGlobal
