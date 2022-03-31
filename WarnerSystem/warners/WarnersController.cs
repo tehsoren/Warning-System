@@ -5,7 +5,7 @@ namespace WarnerSystem
     class WarnersController
     {
 
-        public List<IWarner> warners;
+        public List<Warner> warners;
 
 
         public WarnersController()

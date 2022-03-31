@@ -5,55 +5,42 @@ using System.Threading.Tasks;
 
 namespace WarnerSystem.warners
 {
-    public class SimpleCountdown : IWarner
+    public class SimpleCountdown : Warner
     {
-        Task task;
-        string title;
-        public SimpleCountdown(string title)
+        int timeToSleep;
+        public SimpleCountdown(string title,int timeToSleep) : base(title)
         {
-            this.title = title;
-        }
-        public Task StartWarner()
-        {
-            Task task = Task.Run(() => Timer());
-            this.task = task;
-            return task;
+            this.timeToSleep = timeToSleep;
         }
 
-        private void Timer()
-        {
-            Thread.Sleep(2000);
-            Debug.WriteLine("hej");
-        }
-
-        public string GetTitle()
-        {
-            return title;
-        }
-
-        public void StopWarner()
+        public override void InfoWindowClear()
         {
             throw new NotImplementedException();
         }
 
-        public string GetWarnerStatus()
-        {
-            return "NYI";
-        }
-
-        public void InfoWindowFillout()
+        public override void InfoWindowFillout()
         {
             throw new NotImplementedException();
         }
 
-        public void InfoWindowUpdate()
+        public override void InfoWindowUpdate()
         {
             throw new NotImplementedException();
         }
 
-        public void InfoWindowClear()
+        public override Action WarnerAction(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return (() =>
+                {
+                    for (int i = 0; i < timeToSleep; i++)
+                    {
+                        if (token.IsCancellationRequested)
+                            break;
+                        Debug.WriteLine("I sleep still");
+                        Thread.Sleep(1000);
+                    }
+                
+                }) ;
         }
     }
 }

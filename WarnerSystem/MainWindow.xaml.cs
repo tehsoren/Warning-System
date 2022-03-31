@@ -14,31 +14,30 @@ namespace WarnerSystem
         {
             InitializeComponent();
 
-            List<IWarner> warnersList = new List<IWarner>();
-
-            KB.ItemsSource = warnersList;
+            List<Warner> warnersList = new List<Warner>();
 
             warnersController = new WarnersController { warners = warnersList };
-
-            AddNewWarner(new SimpleCountdown("Simple Timer"));
+            KB.ItemsSource = warnersController.warners;
+            AddNewWarner(new SimpleCountdown("Simple Timer",5));
 
         }
 
         private void KB_changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            IWarner w = ((IWarner)e.AddedItems[0]);
+            Warner w = (Warner)e.AddedItems[0];
 
             DataTitle.Content = w.GetTitle();
             DataStatus.Content = w.GetWarnerStatus();
 
         }
-        public void AddNewWarner(IWarner warner)
+        public void AddNewWarner(Warner warner)
         {
             warnersController.warners.Add(warner);
+            KB.Items.Refresh();
         }
         private void NewWarnerButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            AddNewWarner(new SimpleCountdown("Simple Timer",5));
         }
         private void DelWarnerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -47,14 +46,15 @@ namespace WarnerSystem
 
         private void StartWarnerButton(object sender, RoutedEventArgs e)
         {
-            IWarner w = (IWarner)KB.SelectedItem;
+            Warner w = (Warner)KB.SelectedItem;
 
             StartWarner(w);
         }
 
-        private async void StartWarner(IWarner warner)
+        private async void StartWarner(Warner warner)
         {
             await warner.StartWarner();
+
         }
 
         private void SoundAlarm()
@@ -64,7 +64,7 @@ namespace WarnerSystem
 
         private void StopWarnerButton(object sender, RoutedEventArgs e)
         {
-            IWarner w = (IWarner)KB.SelectedItem;
+            Warner w = (Warner)KB.SelectedItem;
 
             w.StopWarner();
         }

@@ -1,45 +1,38 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WarnerSystem.warners
 {
-    class TestOcrWarner : IWarner
+    public class TestOcrWarner : Warner
     {
-        public string GetTitle()
+        public TestOcrWarner(string title) : base(title)
+        {
+        }
+        public override string GetWarnerStatus()
         {
             throw new NotImplementedException();
         }
 
-        public string GetWarnerStatus()
+        public override void InfoWindowClear()
         {
             throw new NotImplementedException();
         }
 
-        public void InfoWindowClear()
+        public override void InfoWindowFillout()
         {
             throw new NotImplementedException();
         }
 
-        public void InfoWindowFillout()
+        public override void InfoWindowUpdate()
         {
             throw new NotImplementedException();
         }
 
-        public void InfoWindowUpdate()
+        public override Action WarnerAction(CancellationToken token)
         {
             throw new NotImplementedException();
         }
-
-        public Task StartWarner()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void StopWarner()
-        {
-            throw new NotImplementedException();
-        }
-
 
         private void OCR()
         {
