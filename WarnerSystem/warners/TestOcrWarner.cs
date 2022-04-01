@@ -9,7 +9,7 @@ namespace WarnerSystem.warners
         public TestOcrWarner(string title) : base(title)
         {
         }
-        public override string GetWarnerStatus()
+        public override TaskStatus? GetWarnerStatus()
         {
             throw new NotImplementedException();
         }

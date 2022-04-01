@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using WarnerSystem.warners;
 
@@ -18,23 +19,36 @@ namespace WarnerSystem
 
             warnersController = new WarnersController { warners = warnersList };
             KB.ItemsSource = warnersController.warners;
-            AddNewWarner(new SimpleCountdown("Simple Timer",5));
+            AddNewWarner(new SimpleCountdown("Simple Timer",2));
 
         }
 
         private void KB_changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            Warner w = (Warner)e.AddedItems[0];
-
-            DataTitle.Content = w.GetTitle();
-            DataStatus.Content = w.GetWarnerStatus();
-
+            UpdateWarnerInfo();
+        }
+        private void UpdateWarnerInfo()
+        {
+            if(KB.SelectedItem != null)
+            {
+                Warner w = (Warner)KB.SelectedItem;
+                DataTitle.Content = w.GetTitle();
+                
+                DataStatus.Content = w.GetWarnerStatus();
+            }
         }
         public void AddNewWarner(Warner warner)
         {
             warnersController.warners.Add(warner);
-            KB.Items.Refresh();
+            RefreshWarnerList();
         }
+
+        private void RefreshWarnerList()
+        {
+            KB.Items.Refresh();
+            
+        }
+
         private void NewWarnerButton_Click(object sender, RoutedEventArgs e)
         {
             AddNewWarner(new SimpleCountdown("Simple Timer",5));
@@ -47,17 +61,29 @@ namespace WarnerSystem
         private void StartWarnerButton(object sender, RoutedEventArgs e)
         {
             Warner w = (Warner)KB.SelectedItem;
+            if(w != null)
+            {
+                if(w.GetWarnerStatus() != TaskStatus.Running)
+                    StartWarner(w);
 
-            StartWarner(w);
+            }
+            UpdateWarnerInfo();
+
         }
 
         private async void StartWarner(Warner warner)
         {
             await warner.StartWarner();
+            if(warner.GetWarnerStatus() == TaskStatus.RanToCompletion)
+            {
+                SoundAlarm(warner);
+                UpdateWarnerInfo();
+            }
+            
 
         }
 
-        private void SoundAlarm()
+        private void SoundAlarm(Warner warner)
         {
             Debug.WriteLine("A Warner is Done");
         }
@@ -65,8 +91,12 @@ namespace WarnerSystem
         private void StopWarnerButton(object sender, RoutedEventArgs e)
         {
             Warner w = (Warner)KB.SelectedItem;
-
-            w.StopWarner();
+            if (w != null)
+            {
+                if (w.GetWarnerStatus() == TaskStatus.Running)
+                    w.StopWarner();
+            }
+            UpdateWarnerInfo();
         }
     }
 }

@@ -21,13 +21,17 @@ namespace WarnerSystem.warners
         {
             return title;
         }
-        public virtual Task StartWarner()
+        public async virtual Task StartWarner()
         {
             NewTokenSource();
-            Task task = Task.Run(WarnerAction(tokenSource.Token)); 
+
+            Task task = Task.Run(WarnerAction(tokenSource.Token), tokenSource.Token);
 
             this.task = task;
-            return task;
+            await task;
+
+            
+            
         }
 
         private void NewTokenSource()
@@ -46,15 +50,15 @@ namespace WarnerSystem.warners
             }
         }
         public abstract Action WarnerAction(CancellationToken token);
-        public virtual string GetWarnerStatus()
+        public virtual TaskStatus? GetWarnerStatus()
         {
             if(task != null)
             {
-                return this.task.Status.ToString();
+                return this.task.Status;
             }
             else
             {
-                return "Warner not started yet";
+                return null;
             }
             
         }

@@ -8,11 +8,13 @@ namespace WarnerSystem.warners
 {
     public class DateAndTimeWarner : Warner
     {
+        private DateTime targetDate;
         public DateAndTimeWarner(string title) : base(title)
         {
         }
 
-        public override string GetWarnerStatus()
+
+        public override TaskStatus? GetWarnerStatus()
         {
             throw new NotImplementedException();
         }
@@ -34,7 +36,21 @@ namespace WarnerSystem.warners
 
         public override Action WarnerAction(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return (() =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    if(DateTime.Compare(targetDate,DateTime.Now)<=0)//now needs to later than target
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Thread.Sleep(1000);
+                    }
+                    
+                }
+            });
         }
     }
 }

@@ -35,7 +35,9 @@ namespace WarnerSystem.warners
                     for (int i = 0; i < timeToSleep; i++)
                     {
                         if (token.IsCancellationRequested)
+                        {
                             break;
+                        }
                         Debug.WriteLine("I sleep still");
                         Thread.Sleep(1000);
                     }
