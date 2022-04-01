@@ -32,7 +32,7 @@ namespace WarnerSystem
             if(KB.SelectedItem != null)
             {
                 Warner w = (Warner)KB.SelectedItem;
-                DataTitle.Content = w.GetTitle();
+                DataTitle.Content = w.Title;
                 
                 DataStatus.Content = w.GetWarnerStatus();
             }
@@ -55,7 +55,15 @@ namespace WarnerSystem
         }
         private void DelWarnerButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Warner w = (Warner)KB.SelectedItem;
+            if(w != null)
+            {
+                if(w.GetWarnerStatus() != TaskStatus.Running)
+                {
+                    warnersController.warners.Remove(w);
+                    RefreshWarnerList();
+                }
+            }
         }
 
         private void StartWarnerButton(object sender, RoutedEventArgs e)

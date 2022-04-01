@@ -12,15 +12,15 @@ namespace WarnerSystem.warners
         private string title;
         public Task task;
         private CancellationTokenSource tokenSource;
+
+        public string Title { get => title; }
+
         public Warner(string title)
         {
             this.title = title;
         }
 
-        public string GetTitle()
-        {
-            return title;
-        }
+
         public async virtual Task StartWarner()
         {
             NewTokenSource();
