@@ -12,8 +12,9 @@ namespace WarnerSystem.warners
         private string title;
         public Task task;
         private CancellationTokenSource tokenSource;
-
+        private bool warned = false;
         public string Title { get => title; }
+        public bool Warned { get => warned; set => warned = value; }
 
         public Warner(string title)
         {

@@ -13,7 +13,20 @@
                 <Button Click="DelWarnerButton_Click">Del Warner</Button>
             </StackPanel>
             <ListBox Name="KB" HorizontalContentAlignment="Stretch" SelectionChanged="KB_changed" MinWidth="200">
-                <ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Warned}" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Warned}" Value="False">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                    
                     <DataTemplate>
                         <Grid Margin="0,2">
                             <Grid.ColumnDefinitions>
@@ -32,7 +45,7 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Title:"></Label>
-                        <Label Name ="DataTitle" Content="{Binding Path=selected.Title}"></Label>
+                        <Label Name ="DataTitle" Content=""></Label>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Status:"></Label>
