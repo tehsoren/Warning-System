@@ -40,6 +40,11 @@ namespace WarnerSystem
                 DataTitle.Content = w.Title;
                 
                 DataStatus.Content = w.GetWarnerStatus();
+
+                InfoRoot.Children.Clear();
+                var sp = w.InfoWindowFillout();
+                InfoRoot.Children.Add(sp);
+                
             }
         }
         public void AddNewWarner(Warner warner)

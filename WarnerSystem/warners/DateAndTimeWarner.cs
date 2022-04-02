@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace WarnerSystem.warners
 {
@@ -13,18 +14,12 @@ namespace WarnerSystem.warners
         {
         }
 
-
-        public override TaskStatus? GetWarnerStatus()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void InfoWindowClear()
         {
             throw new NotImplementedException();
         }
 
-        public override void InfoWindowFillout()
+        public override StackPanel InfoWindowFillout()
         {
             throw new NotImplementedException();
         }

@@ -60,7 +60,6 @@
                         </Button>
                     </StackPanel>
                     <StackPanel Name="InfoRoot">
-
                     </StackPanel>
                     <Image x:Name="testimg" Width="560" Height="295"></Image>
                 </StackPanel>

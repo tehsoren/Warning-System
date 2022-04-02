@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace WarnerSystem.warners
 {
@@ -63,7 +64,7 @@ namespace WarnerSystem.warners
             }
             
         }
-        public abstract void InfoWindowFillout();
+        public abstract StackPanel InfoWindowFillout();
         public abstract void InfoWindowUpdate();
         public abstract void InfoWindowClear();
     }

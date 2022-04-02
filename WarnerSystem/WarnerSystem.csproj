@@ -7,16 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ui\**" />
+    <EmbeddedResource Remove="ui\**" />
+    <None Remove="ui\**" />
+    <Page Remove="ui\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="warners\SimpleTimer.cs" />
     <Compile Remove="warners\WarnerOld.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ui\" />
   </ItemGroup>
 
 </Project>

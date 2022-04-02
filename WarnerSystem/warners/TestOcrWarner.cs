@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace WarnerSystem.warners
 {
@@ -19,7 +20,7 @@ namespace WarnerSystem.warners
             throw new NotImplementedException();
         }
 
-        public override void InfoWindowFillout()
+        public override StackPanel InfoWindowFillout()
         {
             throw new NotImplementedException();
         }
