@@ -64,6 +64,7 @@ namespace WarnerSystem.warners
             }
             
         }
+        public bool IsRunning { get => this.GetWarnerStatus() == TaskStatus.Running; }
         public abstract StackPanel InfoWindowFillout();
         public abstract void InfoWindowUpdate();
         public abstract void InfoWindowClear();

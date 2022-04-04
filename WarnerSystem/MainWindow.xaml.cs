@@ -21,6 +21,7 @@ namespace WarnerSystem
             warnersController = new WarnersController { warners = warnersList };
             KB.ItemsSource = warnersController.warners;
             AddNewWarner(new SimpleCountdown("Simple Timer",2));
+            AddNewWarner(new DateAndTimeWarner("Date And Time"));
 
         }
 

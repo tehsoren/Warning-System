@@ -43,18 +43,18 @@ namespace WarnerSystem.warners
         private void timerTextBox_InputValidation(object sender, TextChangedEventArgs args)
         {
             var newText = (TextBox)sender;
-            //or just try catch a parse int
-            if(newText.Text.Any(c => !char.IsDigit(c)))
+            if(int.TryParse(newText.Text,out int parsed))
             {
+                timeToSleep = parsed;
                 newText.Text = timeToSleep.ToString();
             }
             else
             {
-                timeToSleep = int.Parse(newText.Text);
+                newText.Text = timeToSleep.ToString();
             }
         }
 
-        public bool IsRunning { get => this.GetWarnerStatus() == TaskStatus.Running;}
+        
 
         public override void InfoWindowUpdate()
         {
