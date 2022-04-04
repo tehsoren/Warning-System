@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Linq;
 
 namespace WarnerSystem.warners
 {
@@ -29,12 +30,28 @@ namespace WarnerSystem.warners
             sp.Children.Add(l1);
             TextBox t1 = new TextBox();
             sp.Children.Add(t1);
+            t1.TextChanged += timerTextBox_InputValidation;
 
-            XAMLHelper.CreateNewBinding(this, "TimeToSleep", BindingMode.TwoWay, t1, TextBox.TextProperty);
+            XAMLHelper.CreateNewBinding(this, "TimeToSleep", BindingMode.OneWay, t1, TextBox.TextProperty);
             XAMLHelper.CreateNewBinding(this, "IsRunning", BindingMode.OneWay, t1, TextBox.IsReadOnlyProperty);
 
 
             return sp;
+        }
+
+
+        private void timerTextBox_InputValidation(object sender, TextChangedEventArgs args)
+        {
+            var newText = (TextBox)sender;
+            //or just try catch a parse int
+            if(newText.Text.Any(c => !char.IsDigit(c)))
+            {
+                newText.Text = timeToSleep.ToString();
+            }
+            else
+            {
+                timeToSleep = int.Parse(newText.Text);
+            }
         }
 
         public bool IsRunning { get => this.GetWarnerStatus() == TaskStatus.Running;}
