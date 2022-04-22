@@ -12,7 +12,7 @@ namespace OCR
         }
         public bool TryGetResult(Bitmap image, out OCRResult result)
         {
-            using(OcrInput input = new OcrInput(image))
+            using (OcrInput input = new OcrInput(image))
             {
                 var ocrRes = tesseract.Read(input);
                 result = new OCRResult(ocrRes.Text);
@@ -29,10 +29,10 @@ namespace OCR
             }
 
             return true;
-                
-            
-            
-            
+
+
+
+
         }
     }
 }

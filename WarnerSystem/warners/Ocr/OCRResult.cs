@@ -12,7 +12,7 @@ namespace OCR
         public OCRResult()
         {
         }
-        public string Result { get => _result;}
+        public string Result { get => _result; }
         public bool Succeded { get => _succeded; }
 
         public bool TryGetResult(out string result)
