@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -42,18 +38,18 @@ namespace WarnerSystem.warners
         private void dateTimeTextBox_InputValidation(object sender, TextChangedEventArgs args)
         {
             var newText = (TextBox)sender;
-            
+
             if (DateTime.TryParse(newText.Text, out DateTime parsed))
             {
                 //cant set a timer before now
-                if(DateTime.Compare(DateTime.Now,parsed)<0)
+                if (DateTime.Compare(DateTime.Now, parsed) < 0)
                 {
                     targetDate = parsed;
                 }
             }
             else
             {
-                
+
             }
         }
 
@@ -68,7 +64,7 @@ namespace WarnerSystem.warners
             {
                 while (!token.IsCancellationRequested)
                 {
-                    if(DateTime.Compare(targetDate,DateTime.Now)<=0)//now needs to later than target
+                    if (DateTime.Compare(targetDate, DateTime.Now) <= 0)//now needs to later than target
                     {
                         break;
                     }
@@ -76,7 +72,7 @@ namespace WarnerSystem.warners
                     {
                         Thread.Sleep(1000);
                     }
-                    
+
                 }
             });
         }

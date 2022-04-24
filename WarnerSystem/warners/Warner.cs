@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -32,8 +29,8 @@ namespace WarnerSystem.warners
             this.task = task;
             await task;
 
-            
-            
+
+
         }
 
         private void NewTokenSource()
@@ -47,14 +44,14 @@ namespace WarnerSystem.warners
         public virtual void StopWarner()
         {
             if (tokenSource != null)
-            { 
-                tokenSource.Cancel(); 
+            {
+                tokenSource.Cancel();
             }
         }
         public abstract Action WarnerAction(CancellationToken token);
         public virtual TaskStatus? GetWarnerStatus()
         {
-            if(task != null)
+            if (task != null)
             {
                 return this.task.Status;
             }
@@ -62,7 +59,7 @@ namespace WarnerSystem.warners
             {
                 return null;
             }
-            
+
         }
         public bool IsRunning { get => this.GetWarnerStatus() == TaskStatus.Running; }
         public abstract StackPanel InfoWindowFillout();

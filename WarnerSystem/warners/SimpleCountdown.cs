@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Linq;
 
 namespace WarnerSystem.warners
 {
     public class SimpleCountdown : Warner
     {
         int timeToSleep;
-        public SimpleCountdown(string title,int timeToSleep) : base(title)
+        public SimpleCountdown(string title, int timeToSleep) : base(title)
         {
             this.timeToSleep = timeToSleep;
         }
@@ -26,7 +24,7 @@ namespace WarnerSystem.warners
         public override StackPanel InfoWindowFillout()
         {
             StackPanel sp = new StackPanel();
-            Label l1 = new Label() { Content= "Countdown Time: "};
+            Label l1 = new Label() { Content = "Countdown Time: " };
             sp.Children.Add(l1);
             TextBox t1 = new TextBox();
             sp.Children.Add(t1);
@@ -43,7 +41,7 @@ namespace WarnerSystem.warners
         private void timerTextBox_InputValidation(object sender, TextChangedEventArgs args)
         {
             var newText = (TextBox)sender;
-            if(int.TryParse(newText.Text,out int parsed))
+            if (int.TryParse(newText.Text, out int parsed))
             {
                 timeToSleep = parsed;
                 newText.Text = timeToSleep.ToString();
@@ -54,7 +52,7 @@ namespace WarnerSystem.warners
             }
         }
 
-        
+
 
         public override void InfoWindowUpdate()
         {
@@ -74,8 +72,8 @@ namespace WarnerSystem.warners
                         Debug.WriteLine("I sleep still");
                         Thread.Sleep(1000);
                     }
-                
-                }) ;
+
+                });
         }
     }
 }
